@@ -11,4 +11,5 @@ class TestSearchBook:
         driver.get("https://demoqa.com/")
         store.navigate_to_book_store()
         store.search_book(keyword)
-        store.verify_books_contain(keyword)
+        store.verify_books_contain(keyword) 
+

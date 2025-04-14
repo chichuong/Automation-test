@@ -1,14 +1,60 @@
-# TESTING_SELENIUM: DemoQA Login/Logout Test Automation
+# 📘 DEMOQA Automation Tests
 
-Project này thực hiện kiểm thử tự động cho chức năng đăng nhập và đăng xuất của trang web DemoQA ([https://demoqa.com/login](https://demoqa.com/login)) sử dụng Selenium WebDriver với Python.
+This project is an automated test suite for the [DEMOQA ](https://demoqa.com)
 
-## Các công nghệ sử dụng
+---
 
-- **Python:** Ngôn ngữ lập trình chính.
-- **Selenium WebDriver:** Thư viện tương tác với trình duyệt web.
-- **Pytest:** Framework chạy test và quản lý fixture.
-- **Webdriver Manager:** Tự động quản lý (tải/cập nhật) các driver cho trình duyệt (chromedriver, geckodriver).
-- **Page Object Model (POM):** Mẫu thiết kế giúp tách biệt code tương tác trang web khỏi logic của test case, tăng khả năng bảo trì.
-- **Factory Design Pattern:** Sử dụng để tạo các đối tượng WebDriver cho nhiều trình duyệt khác nhau một cách linh hoạt.
+**Login**
+**Logout**
+**Search books** by keyword
+**Verify** search results contain the keyword
 
-## Cấu trúc thư mục
+---
+
+---
+
+## Tech Stack
+
+- Python 3.8+
+- Selenium
+- Pytest
+- WebDriver Manager
+- Page Object Model (POM)
+
+---
+
+---
+
+Create Virtual Environment
+
+python -m venv venv
+source venv/bin/activate # Windows: venv\Scripts\activate
+
+---
+
+---
+
+Install Dependencies
+pip install -r requirements.txt
+
+---
+
+---
+
+Running Tests
+Test: Login & Logout
+python -m pytest tests/test_login_logout.py -v
+
+Test: Search Books
+python -m pytest tests/test_search_book.py -v -s
+
+---
+
+---
+
+Browser Setup
+Default browser: Chrome
+To switch to Firefox, change the value in conftest.py:
+@pytest.fixture(params=["firefox"])
+
+---

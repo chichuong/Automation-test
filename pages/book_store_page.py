@@ -42,3 +42,4 @@ class BookStorePage:
         books = self.get_book_titles()
         for book in books:
             assert keyword.lower() in book.lower()
+            print(f"Found book: {book}")
