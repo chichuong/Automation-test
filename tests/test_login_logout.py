@@ -9,7 +9,7 @@ class TestLoginLogout:
     @pytest.fixture(scope="class", autouse=True)
     def driver_setup(self):
         browser_to_test = "chrome"
-        TestLoginLogout.driver = DriverFactory.get_driver(browser_to_test)  # ✅ sửa lại đúng class method
+        TestLoginLogout.driver = DriverFactory.get_driver(browser_to_test) 
         TestLoginLogout.driver.maximize_window()
         TestLoginLogout.login_page = LoginPage(TestLoginLogout.driver)
         yield
