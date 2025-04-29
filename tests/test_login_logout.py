@@ -1,26 +1,31 @@
+# tests/test_login.py
 import pytest
-from drivers.webdriver_factory import DriverFactory
 from pages.login_page import LoginPage
 
+@pytest.mark.usefixtures("driver")
 class TestLoginLogout:
-    driver = None
-    login_page = None
 
-    @pytest.fixture(scope="class", autouse=True)
-    def driver_setup(self):
-        browser_to_test = "chrome"
-        TestLoginLogout.driver = DriverFactory.get_driver(browser_to_test) 
-        TestLoginLogout.driver.maximize_window()
-        TestLoginLogout.login_page = LoginPage(TestLoginLogout.driver)
-        yield
-        if TestLoginLogout.driver:
-            TestLoginLogout.driver.quit()
-            TestLoginLogout.driver = None
+    @pytest.fixture(autouse=True)
+    def page_objects(self, driver):
+        self.login_page = LoginPage(driver)
 
-    USERNAME = "chichuong"
-    PASSWORD = "Chuong@123"
+    def test_successful_login_logout(self, test_data, base_url):
+        credentials = test_data['login_credentials']['valid_user']
+        username = credentials['username']
+        password = credentials['password']
 
-    def test_successful_login_logout(self, driver_setup):
-        self.login_page.go_to_login_page()
-        self.login_page.login(self.USERNAME, self.PASSWORD)
-        self.login_page.logout()
+
+        self.login_page.go_to_login_page(base_url)
+
+        # Đăng nhập
+        login_success = self.login_page.login(username, password)
+        assert login_success, "Đăng nhập thất bại: Không thấy nút Logout sau khi đăng nhập."
+
+        # Xác minh username 
+        displayed_user = self.login_page.get_welcome_message_user()
+        assert displayed_user == username, \
+            f"Tên người dùng đăng nhập không khớp. Mong đợi '{username}', nhận được '{displayed_user}'"
+
+        # Đăng xuất
+        logout_success = self.login_page.logout()
+        assert logout_success, "Đăng xuất thất bại: Không thấy trường nhập username sau khi đăng xuất."

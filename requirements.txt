@@ -1,2 +1,5 @@
-selenium
-pytest
+# requirements.txt
+
+selenium>=4.0.0
+webdriver-manager>=4.0.0
+pytest>=7.0.0

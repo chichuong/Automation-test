@@ -1,0 +1,14 @@
+{
+    "login_credentials": {
+      "valid_user": {
+        "username": "chichuong",
+        "password": "Chuong@123"
+      },
+      "invalid_user": {
+         "username": "invalidUser",
+         "password": "wrongPassword"
+      }
+    },
+    "search_keywords": ["java"],
+    "book_store_url": "https://demoqa.com/"
+  }
